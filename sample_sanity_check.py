@@ -11,7 +11,7 @@ import settings_dist
 import os
 from tempfile import TemporaryFile
 
-sample = "Brats17_TCIA_247_1"
+sample = "Brats17_TCIA_186_1"
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"  # Get rid of the AVX, SSE warnings
 
@@ -50,7 +50,7 @@ with tf.Session(graph=tf.Graph()) as sess:
 
     msks_test_predictions = []
 
-    for idx in tqdm(range(0, imgs_test.shape[0] - batch_size, batch_size), desc="Calculating metrics on test dataset", leave=False):
+    for idx in tqdm(range(0, imgs_test.shape[0], batch_size), desc="Calculating metrics on test dataset", leave=False):
         x_test = imgs_test[idx:(idx+batch_size)]
         y_test = msks_test[idx:(idx+batch_size)]
 
